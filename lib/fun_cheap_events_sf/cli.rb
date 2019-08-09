@@ -13,7 +13,7 @@ class FunCheapEventsSf::CLI
 Feel free to check out more than one event and if you're feeling adventurous,   out all of them!#{@@white}
 \n"
     @input = ""
-    until @input == "exit"
+    until @input == "n"
     get_selections
     list_selections
     get_user_selection
@@ -47,15 +47,14 @@ Feel free to check out more than one event and if you're feeling adventurous,   
   def show_events_det(chosen_selection)
     selection = @selections [chosen_selection - 1]
     selection.get_details
-    puts "\nHere are the details for #{selection.name}.\n"
+    puts "\n#{@@blue}Details:#{@@white}#{selection.name}.\n"
     puts selection.details
-    puts "Here is the cost for #{selection.name}" unless selection.cost.empty? 
-    puts ""
+    puts "#{selection.name}" unless selection.cost.empty? 
     puts selection.cost
   end
 
   def done
-    puts "\nIf you would like to see more events, press any key. If you are done, please type '#{@@red}exit#{@@white}' to quit.\n"
+    puts "\nWould you like to see more events?#{@@red}(y/n)#{@@white}\n"
     @input = gets.strip
   end 
   
