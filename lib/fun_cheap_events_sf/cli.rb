@@ -16,17 +16,17 @@ Feel free to check out more than one event and if you're feeling adventurous,   
 \n"
     @input = ""
     until @input == "n"
-    get_selections
-    show_selections
-    get_user_selection
-    more_events
+    event_selections
+    more_or_exit
   
     end
     user_exit
   end
   
-  def get_selections
+  def event_selections
     @selections = FunCheapEventsSf::Selection.all
+    show_selections
+    user_selection
   end
   
   def show_selections
@@ -37,16 +37,16 @@ Feel free to check out more than one event and if you're feeling adventurous,   
     end
   end
     
-  def get_user_selection
+  def user_selection
     chosen_selection = gets.strip.to_i
-    show_events_det(chosen_selection) if valid_input(chosen_selection, @selections)
+    show_event_det(chosen_selection) if valid_selection(chosen_selection, @selections)
   end 
 
-  def valid_input(input, data)
+  def valid_selection(input, data)
     input.to_i <= data.length && input.to_i > 0
   end 
   
-  def show_events_det(chosen_selection)
+  def show_event_det(chosen_selection)
     selection = @selections [chosen_selection - 1]
     selection.get_details
     puts "\n#{@@blue}Details:#{@@white}#{selection.name}.\n"
@@ -54,7 +54,7 @@ Feel free to check out more than one event and if you're feeling adventurous,   
     puts selection.cost unless selection.cost.empty?
   end
 
-  def more_events
+  def more_or_exit
     puts "\nWould you like to see more events?#{@@red}(y/n)#{@@white}\n"
     @input = gets.strip
   end 
