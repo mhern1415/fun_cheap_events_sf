@@ -8,9 +8,11 @@ class FunCheapEventsSf::CLI
     puts "\n#{@@white}
 ------------------------#{@@red}Welcome to Fun Cheap Events SF#{@@white}------------------------           
 
-#{@@yellow}This application will guide you in selecting an event that will occur today.    Once selected, more details can  be seen about the event as well as the cost of the event if available.
+#{@@yellow}This application will guide you in selecting an event that will occur today in  the San Francisco Bay Area.
 
-Feel free to check out more than one event and if you're feeling adventurous,   out all of them!#{@@white}
+Once selected, more details can  be seen about the event as well as the cost of the event if available.
+
+Feel free to check out more than one event and if you're feeling adventurous,   check out all of them!#{@@white}
 \n"
     @input = ""
     until @input == "n"
@@ -59,6 +61,6 @@ Feel free to check out more than one event and if you're feeling adventurous,   
   end 
   
   def goodbye
-    puts "\nThank you for using FunCheapEventsSf! Goodbye!\n"
+    puts "\nThank you for using #{@@red}FunCheapEventsSf#{@@white}! Goodbye!\n"
   end
 end
