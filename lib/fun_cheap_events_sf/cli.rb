@@ -17,19 +17,19 @@ Feel free to check out more than one event and if you're feeling adventurous,   
     @input = ""
     until @input == "n"
     get_selections
-    list_selections
+    show_selections
     get_user_selection
-    done
+    more_events
   
     end
-    goodbye
+    user_exit
   end
   
   def get_selections
     @selections = FunCheapEventsSf::Selection.all
   end
   
-  def list_selections
+  def show_selections
     puts "\nFrom the list below, please select an #{@@green}event#{@@white} to get the event information.
     \n"
     @selections.each.with_index(1) do |selection, index| 
@@ -50,17 +50,16 @@ Feel free to check out more than one event and if you're feeling adventurous,   
     selection = @selections [chosen_selection - 1]
     selection.get_details
     puts "\n#{@@blue}Details:#{@@white}#{selection.name}.\n"
-    puts selection.details
-    puts "#{selection.name}" unless selection.cost.empty? 
-    puts selection.cost
+    puts selection.details unless selection.details.empty?
+    puts selection.cost unless selection.cost.empty?
   end
 
-  def done
+  def more_events
     puts "\nWould you like to see more events?#{@@red}(y/n)#{@@white}\n"
     @input = gets.strip
   end 
   
-  def goodbye
-    puts "\nThank you for using #{@@red}FunCheapEventsSf#{@@white}! Goodbye!\n"
+  def user_exit
+    puts "\nThank you for using #{@@red}FunCheapEventsSf#{@@white}! Have a great day!\n"
   end
 end

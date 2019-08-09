@@ -39,19 +39,21 @@ class FunCheapEventsSf::Webscraper
     url = "#{selection.ref}"
     page = Nokogiri::HTML(open(url)) 
     
-    info = page.css("div p") 
+    event_details = page.css("div p") 
     
-    info.each do |i|
-      info = i.text.strip.chomp
-      info.delete_suffix!('Facebook comments:') 
-      selection.details << info
+    event_details.each do |i|
+      event_details = i.text.strip.chomp
+      event_details.delete_suffix!('Facebook comments:') 
+      selection.details << event_details
     end 
-    info = page.css("span.cost")
-    info.each do |i|
-      info = i.text.strip.chomp 
-      info.delete_prefix!('| Cost:')
-       info.delete_suffix!('*')
-      selection.cost << info
+    
+    event_cost = page.css("span.cost")
+    
+    event_cost.each do |i|
+      event_cost = i.text.strip.chomp 
+      event_cost.delete_prefix!('| Cost:')
+      event_cost.delete_suffix!('*')
+      selection.cost << event_cost
     end
   end
 end
