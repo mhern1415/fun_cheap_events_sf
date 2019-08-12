@@ -8,19 +8,19 @@ class FunCheapEventsSf::CLI
     puts "\n#{@@white}
 ------------------------#{@@red}Welcome to Fun Cheap Events SF#{@@white}------------------------           
 
-#{@@yellow}This application will guide you in selecting an event that will occur today in  the San Francisco Bay Area.
+#{@@yellow}This application will assist you in finding an event that will occur today in  the San Francisco Bay Area.
 
 Once selected, more details can  be seen about the event as well as the cost of the event if available.
 
 Feel free to check out more than one event and if you're feeling adventurous,   check out all of them!#{@@white}
 \n"
     @input = ""
-    until @input == "n"
-    event_selections
-    more_or_exit
+  until @input == "n"
+  event_selections
+  more_or_exit
   
-    end
-    user_exit
+  end
+  user_exit
   end
   
   def event_selections
@@ -39,11 +39,11 @@ Feel free to check out more than one event and if you're feeling adventurous,   
     
   def user_selection
     chosen_selection = gets.strip.to_i
-    show_event_det(chosen_selection) if valid_selection(chosen_selection, @selections)
+    show_event_det(chosen_selection) if is_input_valid(chosen_selection, @selections)
   end 
 
-  def valid_selection(input, data)
-    input.to_i <= data.length && input.to_i > 0
+  def is_input_valid(user_input, data)
+    user_input.to_i <= data.length && user_input.to_i > 0
   end 
   
   def show_event_det(chosen_selection)
@@ -55,7 +55,7 @@ Feel free to check out more than one event and if you're feeling adventurous,   
   end
 
   def more_or_exit
-    puts "\nWould you like to see more events?#{@@red}(y/n)#{@@white}\n"
+    puts "\nWould you like to see more events? Type any key to continue or #{@@red}n#{@@white} if you would   like to quit.\n"
     @input = gets.strip
   end 
   
